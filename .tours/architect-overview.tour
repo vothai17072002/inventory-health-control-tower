@@ -1,0 +1,48 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Inventory Health — Hiring Manager Tour",
+  "description": "A guided review of the control-tower decision flow, KPI domains, analytical grain, and validation strategy.",
+  "isPrimary": true,
+  "steps": [
+    {
+      "title": "Start with the control-tower problem",
+      "description": "The project treats inventory health as a balance between service, capital, network position, and capacity—not as a single stock total. This framing establishes the product boundary. The gotcha is optimizing one outcome, such as low inventory, while hiding shortage or service risk.",
+      "file": "README.md",
+      "pattern": "^# Inventory Health Control Tower$"
+    },
+    {
+      "title": "Follow the operational decision path",
+      "description": "Seven pages move from enterprise condition to network imbalance, surplus, shortage, and product-location detail. The mechanism is progressive disclosure. The gotcha is starting with a transaction table and expecting leaders to discover priorities themselves.",
+      "file": "README.md",
+      "pattern": "^## Decision journey$"
+    },
+    {
+      "title": "Understand the KPI balance",
+      "description": "The KPI map explicitly connects service, capital, surplus, shortage, and capacity. This makes tradeoffs visible rather than optimizing domains independently. The gotcha is using only value metrics, which can hide large unit exposure caused by product price mix.",
+      "file": "README.md",
+      "pattern": "^## KPI framework$"
+    },
+    {
+      "title": "Inspect the information hierarchy",
+      "description": "The design narrows from enterprise condition to product × warehouse action. That grain is where ownership and intervention become concrete. The gotcha is blending current snapshot and future-week facts without declaring temporal context.",
+      "file": "docs/report-design.md",
+      "pattern": "^## Information hierarchy$"
+    },
+    {
+      "title": "Review semantic tests",
+      "description": "The test plan verifies value/quantity parity, current/prior/delta families, disconnected selectors, and exclusive risk buckets. This guards a large measure surface against silent inconsistency. The gotcha is testing each measure alone but not testing families under the same filters.",
+      "file": "docs/testing.md",
+      "pattern": "^## Semantic tests$"
+    },
+    {
+      "title": "Make an example formula discussable",
+      "description": "Synthetic DAX makes component and comparison patterns reviewable without exposing production logic. This supports an interview discussion about additive components and time context. The gotcha is defining total commitment before agreeing which supply components are eligible and mutually exclusive.",
+      "file": "samples/dax-patterns.md",
+      "pattern": "^# Inventory-health DAX patterns$"
+    },
+    {
+      "title": "Close with the operating model",
+      "description": "You can now explain how the control tower translates governed facts into prioritization and drill-through action. Continue with the medallion-platform repository to discuss BRZ/SIL/GLD lineage and data-quality gates. Keep personal ownership claims separate from the verified system design until evidence is available."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+artifact: sanitized-report-contract
+report: inventory-health-control-tower
+verified_snapshot:
+  pages: 7
+  primary_pages:
+    - read_me
+    - inventory_health_overview
+    - network_imbalance
+    - surplus
+    - shortage
+    - item_warehouse_detail
+    - route_checking
+  visual_families:
+    - kpi_cards
+    - slicers
+    - matrices
+    - bar_and_scatter_charts
+    - combo_charts
+    - custom_deneb_visual
+    - narrative_insight
+semantic_contract:
+  shared_dimensions:
+    - calendar
+    - product
+    - warehouse
+  domain_dimensions:
+    - vendor
+  fact_patterns:
+    - current_snapshot
+    - future_week
+    - classification_weekly
+    - substatus_weekly
+security:
+  contains_real_data: false
+  contains_report_export: false
+  contains_production_dax: false
