@@ -1,5 +1,17 @@
+schema_version: "1.1"
 artifact: sanitized-report-contract
 report: inventory-health-control-tower
+evidence:
+  observed_as_of: "2026-08-01"
+  observed_scope: aggregate_report_metadata
+  illustrative_scope:
+    - metric_contracts
+    - operating_controls
+    - dax_patterns
+  excluded_claims:
+    - personal_authorship
+    - production_impact
+    - team_size
 verified_snapshot:
   pages: 7
   primary_pages:
@@ -19,6 +31,8 @@ verified_snapshot:
     - custom_deneb_visual
     - narrative_insight
 semantic_contract:
+  analytical_grain: product_x_warehouse_x_snapshot_or_future_week
+  temporal_guardrail: current_snapshot_and_future_week_do_not_overlap
   shared_dimensions:
     - calendar
     - product
@@ -30,7 +44,49 @@ semantic_contract:
     - future_week
     - classification_weekly
     - substatus_weekly
+decision_contracts:
+  read_me:
+    audience: all_consumers
+    decision: confirm_definition_as_of_and_navigation
+    action_owner_role: bi_product_owner
+    guardrail: deterministic_default_filter_state
+  inventory_health_overview:
+    audience: supply_chain_leadership
+    decision: prioritize_service_capital_or_capacity_risk
+    action_owner_role: business_process_owner
+    guardrail: gross_exposures_and_freshness_visible
+  network_imbalance:
+    audience: network_planners
+    decision: identify_feasible_rebalance_candidates
+    action_owner_role: network_planning_lead
+    guardrail: surplus_and_shortage_not_netted_away
+  surplus:
+    audience: inventory_planners
+    decision: transfer_defer_cancel_or_escalate
+    action_owner_role: inventory_planning_lead
+    guardrail: value_quantity_lifecycle_and_ownership_reconcile
+  shortage:
+    audience: supply_planners
+    decision: expedite_rebalance_source_or_escalate
+    action_owner_role: supply_planning_lead
+    guardrail: current_future_and_persistence_boundaries_hold
+  item_warehouse_detail:
+    audience: analysts_and_operators
+    decision: validate_driver_at_accountable_grain
+    action_owner_role: domain_action_owner
+    guardrail: product_warehouse_as_of_context_retained
+  route_checking:
+    audience: network_and_warehouse_operations
+    decision: approve_transfer_or_record_exception
+    action_owner_role: network_operations_owner
+    guardrail: quantity_route_cost_lead_time_capacity_and_priority_pass
 security:
   contains_real_data: false
   contains_report_export: false
   contains_production_dax: false
+release_guardrails:
+  - reconcile_commitment_without_stage_double_count
+  - prove_risk_buckets_exclusive_and_exhaustive
+  - verify_value_quantity_and_currency_consistency
+  - verify_rls_and_export_personas
+  - assert_target_semantic_model_binding

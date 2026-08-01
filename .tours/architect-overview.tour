@@ -1,48 +1,64 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "Inventory Health — Hiring Manager Tour",
-  "description": "A guided review of the control-tower decision flow, KPI domains, analytical grain, and validation strategy.",
+  "title": "Inventory Health — Senior Architecture Tour",
+  "description": "A guided review of decision design, metric contracts, architecture trade-offs, operational controls, and leadership governance.",
   "isPrimary": true,
   "steps": [
     {
-      "title": "Start with the control-tower problem",
-      "description": "The project treats inventory health as a balance between service, capital, network position, and capacity—not as a single stock total. This framing establishes the product boundary. The gotcha is optimizing one outcome, such as low inventory, while hiding shortage or service risk.",
-      "file": "README.md",
-      "pattern": "^# Inventory Health Control Tower$"
+      "title": "How to use this tour",
+      "description": "In about five minutes, follow the control tower from executive decision through metric contracts, trade-offs, release evidence, failure handling, and leadership governance. Separate observed evidence from proposed controls throughout."
     },
     {
-      "title": "Follow the operational decision path",
-      "description": "Seven pages move from enterprise condition to network imbalance, surplus, shortage, and product-location detail. The mechanism is progressive disclosure. The gotcha is starting with a transaction table and expecting leaders to discover priorities themselves.",
+      "title": "Start with the executive decision",
+      "description": "The control tower balances service, working capital, network position, and capacity. The evidence boundary keeps observed structure separate from illustrative contracts and proposed controls.",
+      "file": "README.md",
+      "pattern": "^## Executive brief$"
+    },
+    {
+      "title": "Follow the decision journey",
+      "description": "Pages narrow from enterprise condition to a product-location action and each page has an explicit exit outcome. This is progressive disclosure for action, not a collection of visuals.",
       "file": "README.md",
       "pattern": "^## Decision journey$"
     },
     {
-      "title": "Understand the KPI balance",
-      "description": "The KPI map explicitly connects service, capital, surplus, shortage, and capacity. This makes tradeoffs visible rather than optimizing domains independently. The gotcha is using only value metrics, which can hide large unit exposure caused by product price mix.",
-      "file": "README.md",
-      "pattern": "^## KPI framework$"
+      "title": "Inspect metric contracts",
+      "description": "Eligibility, grain, valuation, temporal cut-off, ownership, and breach actions make inventory metrics governable across reports and teams.",
+      "file": "docs/metric-contracts.md",
+      "pattern": "^## Shared grain and valuation contract$"
     },
     {
-      "title": "Inspect the information hierarchy",
-      "description": "The design narrows from enterprise condition to product × warehouse action. That grain is where ownership and intervention become concrete. The gotcha is blending current snapshot and future-week facts without declaring temporal context.",
-      "file": "docs/report-design.md",
-      "pattern": "^## Information hierarchy$"
+      "title": "Review architecture trade-offs",
+      "description": "The ADRs expose rejected alternatives and consequences, including temporal separation, gross-versus-net risk, parameterized capacity thresholds, and environment binding.",
+      "file": "docs/architecture-decisions.md",
+      "pattern": "^# Architecture decisions$"
     },
     {
-      "title": "Review semantic tests",
-      "description": "The test plan verifies value/quantity parity, current/prior/delta families, disconnected selectors, and exclusive risk buckets. This guards a large measure surface against silent inconsistency. The gotcha is testing each measure alone but not testing families under the same filters.",
+      "title": "Test as a release gate",
+      "description": "The matrix makes reconciliation, bucket exclusivity, security, accessibility, and performance release-blocking with named evidence and ownership.",
       "file": "docs/testing.md",
-      "pattern": "^## Semantic tests$"
+      "pattern": "^# Release-blocking test matrix$"
     },
     {
-      "title": "Make an example formula discussable",
-      "description": "Synthetic DAX makes component and comparison patterns reviewable without exposing production logic. This supports an interview discussion about additive components and time context. The gotcha is defining total commitment before agreeing which supply components are eligible and mutually exclusive.",
+      "title": "Handle failure and scale",
+      "description": "Decision rights, failure modes, incident flow, and the 10× scale discussion turn the dashboard into an operated analytical product.",
+      "file": "docs/operating-model.md",
+      "pattern": "^# Operating model and failure handling$"
+    },
+    {
+      "title": "Challenge the DAX assumptions",
+      "description": "Synthetic patterns show lifecycle-stage de-duplication, closed periods, gross risk visibility, governed thresholds, and hysteresis without exposing proprietary measures.",
       "file": "samples/dax-patterns.md",
-      "pattern": "^# Inventory-health DAX patterns$"
+      "pattern": "^## Commitment value without stage double counting$"
     },
     {
-      "title": "Close with the operating model",
-      "description": "You can now explain how the control tower translates governed facts into prioritization and drill-through action. Continue with the medallion-platform repository to discuss BRZ/SIL/GLD lineage and data-quality gates. Keep personal ownership claims separate from the verified system design until evidence is available."
+      "title": "Close with a defensible interview path",
+      "description": "Use the short and five-minute narratives, then answer challenge questions with explicit evidence language. Do not claim personal ownership or production impact without approved evidence.",
+      "file": "docs/interview-guide.md",
+      "pattern": "^## 30-second answer$"
+    },
+    {
+      "title": "Translate architecture into leadership",
+      "description": "You have followed the product from decision framing through metric contracts, trade-offs, release evidence, failure handling, and interview defense. A Senior/Lead discussion should connect each technical choice to decision quality, accountable ownership, and a safe rollback path. Continue with the semantic-model and medallion-platform case studies for shared metrics and end-to-end lineage."
     }
   ]
 }
