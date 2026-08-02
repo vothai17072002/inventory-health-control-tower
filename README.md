@@ -1,129 +1,109 @@
 # Inventory Health Control Tower
 
 [![Power BI](https://img.shields.io/badge/Power%20BI-Control%20Tower-F2C811)](https://powerbi.microsoft.com/)
-[![Microsoft Fabric](https://img.shields.io/badge/Fabric-Direct%20Lake-742774)](https://www.microsoft.com/microsoft-fabric)
-[![Portfolio](https://img.shields.io/badge/content-sanitized-2E7D32)](#safe-portfolio-scope)
 [![Portfolio quality](https://github.com/vothai17072002/inventory-health-control-tower/actions/workflows/portfolio-quality.yml/badge.svg)](https://github.com/vothai17072002/inventory-health-control-tower/actions/workflows/portfolio-quality.yml)
 
-A Senior/Team Lead case study for balancing service risk, working capital, network imbalance, shortage, surplus, and warehouse capacity in one Power BI decision product.
+A Power BI case study for turning inventory signals into clear actions: **rebalance, expedite, defer, source, or investigate.**
 
-> [!IMPORTANT]
-> This repository contains no real inventory records, financial values, company branding, tenant details, or production report/model exports.
+The project connects service risk, working capital, shortage, surplus, and warehouse capacity in one decision flow. The README starts with the business problem; technical details are available in the linked documents when you need them.
 
-## Executive brief
+> [!NOTE]
+> This is a privacy-safe portfolio case study. It contains no real inventory records, financial values, company branding, tenant details, or production report files.
 
-| | Senior/Lead view |
-|---|---|
-| Problem | Inventory decisions require balancing service, capital, supply risk, network imbalance, and capacity at product-location-time grain. |
-| Product decision | Use a progressive journey from enterprise condition to surplus/shortage diagnosis and accountable item–warehouse action. |
-| Main trade-off | Broad risk coverage improves decisions but creates a large semantic/visual surface that needs explicit ownership, performance, and governance. |
-| Leadership control | Metric contracts map risk to action owners; release gates cover reconciliation, exclusivity, security, performance, and target binding. |
-| Evidence boundary | Seven pages and aggregate metadata are **observed** as of 2026-08-01. KPI examples, thresholds, SLOs, and operating controls are **illustrative/proposed**. |
+## In one minute
 
-## System context
+Inventory is not simply “too high” or “too low.” The same network can have excess stock in one warehouse, a shortage in another, and no practical route between them.
+
+This control-tower design helps a user move through five questions:
 
 ```mermaid
 flowchart LR
-    S[Supply and demand snapshots] --> G[Gold inventory facts]
-    G --> M[Shared Direct Lake semantic model]
-    M --> O[Overview]
-    M --> N[Network imbalance]
-    M --> U[Surplus]
-    M --> H[Shortage]
-    M --> D[Item-location action]
+    A[What is at risk?] --> B[Where is it?]
+    B --> C[Why is it happening?]
+    C --> D[Can stock be moved?]
+    D --> E[Who should act?]
 ```
 
-## Decision journey
+The goal is not more dashboards. The goal is a shorter path from a signal to an accountable decision.
 
-| Page | Decision supported | Exit outcome |
-|---|---|---|
-| Read Me | Understand definitions and navigation | Shared interpretation |
-| Inventory Health Overview | Assess service, capital, inventory, and capacity | Prioritized risk domain |
-| Network Imbalance | Find coexisting surplus and shortage | Transfer candidate or exception |
-| Surplus | Segment excess, aging, and lifecycle exposure | Rebalance/defer/disposition action |
-| Shortage | Separate persistence and source risk | Expedite/source/escalation action |
-| Item–Warehouse Detail | Validate product-location drivers | Accountable follow-up context |
-| Route Checking | Test movement feasibility | Approved route or escalation reason |
+## Choose your path
 
-The observed snapshot contains seven pages and 355 report objects, many of them layout/navigation elements. That count is a **performance and maintainability risk signal**, not an achievement: active query visuals, interaction fan-out, matrix cardinality, accessibility, and custom-visual governance require explicit budgets.
-
-## KPI framework
-
-```mermaid
-mindmap
-  root((Inventory Health))
-    Service
-      ATP in-stock rate
-      Shippable rate
-      Demand at risk
-    Capital
-      Inventory commitment
-      Turns and days on hand
-    Surplus
-      Excess and slow moving
-      Lifecycle aging
-    Shortage
-      Current and future exposure
-      Make-buy-other split
-      Persistence class
-    Capacity
-      Used cube and free space
-      Utilization risk
-```
-
-## Quality attributes
-
-| Attribute | Design response | Evidence status |
-|---|---|---|
-| Correctness | Exclusive/exhaustive risk classes, component reconciliation, current/future boundary | Contract proposed; structures observed |
-| Explainability | Gross shortage and surplus stay visible; narratives reconcile to numeric measures | Design principle proposed |
-| Performance | Page query budget, matrix limits, interaction review, Direct Lake telemetry | Protocol proposed; latency not disclosed |
-| Reliability | Last trusted snapshot, DQ gate, target-binding assertion, rollback | Operating contract proposed |
-| Security | RLS/export tests, least privilege, custom/AI visual privacy review | Controls proposed; tenant posture not assessed |
-| Changeability | Metric owners, measure lifecycle, ADRs, CI validation | Portfolio implementation included |
-
-## Decisions and trade-offs
-
-- **Separate current and future facts:** temporal clarity is worth additional semantic logic.
-- **Keep gross risk primary:** netting shortage and surplus can conceal two large opposing exposures.
-- **Pair value and quantity:** price mix must not hide physical operational risk.
-- **Map risk to playbooks:** classification without action ownership is not a control tower.
-- **Ground AI downstream of metrics:** insights suppress or fall back when freshness, confidence, privacy, or reconciliation contracts fail.
-- **Contain diagnostic density:** overview pages get a tighter query budget; detail moves to drill paths.
-
-See [`docs/architecture-decisions.md`](docs/architecture-decisions.md) for alternatives and revisit triggers.
-
-## Repository map
-
-| Path | Purpose |
+| If you want to... | Start here |
 |---|---|
-| [`docs/report-design.md`](docs/report-design.md) | Information hierarchy, decision-to-action flow, and visual governance |
-| [`docs/metric-contracts.md`](docs/metric-contracts.md) | Grain, eligibility, cost basis, thresholds, owners, and playbooks |
-| [`docs/measure-governance.md`](docs/measure-governance.md) | Lifecycle for the large Inventory Health measure surface |
-| [`docs/architecture-decisions.md`](docs/architecture-decisions.md) | Temporal, risk, action, AI, and binding decisions |
-| [`docs/operating-model.md`](docs/operating-model.md) | Failure modes, security, performance, release, and decision rights |
-| [`docs/testing.md`](docs/testing.md) | Release-blocking test matrix and evidence requirements |
-| [`docs/interview-guide.md`](docs/interview-guide.md) | Executive pitch, system-design path, and challenge questions |
-| [`report/page-inventory.yaml`](report/page-inventory.yaml) | Sanitized report contract |
-| [`samples/dax-patterns.md`](samples/dax-patterns.md) | Synthetic calculation patterns and guardrails |
-| [`scripts/validate_portfolio.py`](scripts/validate_portfolio.py) | CI gate for machine contracts, links, syntax, and public-release safety |
+| Understand the user journey | Read this page, then [`docs/report-design.md`](docs/report-design.md) |
+| Check how shortage, surplus, and service metrics work | [`docs/metric-contracts.md`](docs/metric-contracts.md) |
+| Understand how hundreds of measures are managed | [`docs/measure-governance.md`](docs/measure-governance.md) |
+| Review architecture choices and trade-offs | [`docs/architecture-decisions.md`](docs/architecture-decisions.md) |
+| See testing, security, and operating controls | [`docs/testing.md`](docs/testing.md) and [`docs/operating-model.md`](docs/operating-model.md) |
+| Prepare for a project walkthrough | [`docs/interview-guide.md`](docs/interview-guide.md) |
 
-## Senior/Team Lead discussion map
+## Decisions the report should support
 
-- Designing product × warehouse × time facts without temporal overlap or double counting.
-- Governing service, capital, shortage, surplus, persistence, and capacity metrics.
-- Moving from executive signal to accountable operational action.
-- Managing a large measure/visual surface with ownership, testability, and performance budgets.
-- Assigning decision rights across business, data, semantic, report, platform, and operations roles.
-- Detecting failure, blocking unsafe publication, degrading safely, and rolling back.
-- Scaling 10× from measured bottlenecks rather than premature architecture.
+| Signal | Question | Possible action |
+|---|---|---|
+| Service risk | Which demand may not be fulfilled? | Prioritize, expedite, or escalate |
+| Network imbalance | Is stock available somewhere else? | Transfer or record a route exception |
+| Surplus | Which stock is excessive, slow-moving, or aging? | Rebalance, defer, or dispose |
+| Shortage | Is the risk current, future, persistent, or source-related? | Expedite, source, make, or escalate |
+| Capacity | Which location is approaching its practical limit? | Re-slot, redirect, or review inbound plans |
 
-## Related case studies
+Gross shortage and gross surplus remain visible separately. Netting them too early can make two large problems look like one small number.
+
+## Report journey
+
+The observed report structure contains seven pages:
+
+1. **Read me** — explain definitions and navigation.
+2. **Inventory Health Overview** — choose the risk area that needs attention.
+3. **Network Imbalance** — find transfer candidates and exceptions.
+4. **Surplus** — understand excess, aging, and lifecycle exposure.
+5. **Shortage** — separate current, future, and persistent risk.
+6. **Item–Warehouse Detail** — validate the drivers at an actionable level.
+7. **Route Checking** — confirm whether a proposed movement is feasible.
+
+The snapshot contains 355 report objects, including layout and navigation elements. This is treated as a performance and maintenance constraint, not as an achievement. Overview pages should stay light; detailed analysis belongs in drill paths.
+
+## Metric areas in plain language
+
+- **Service:** Can available stock satisfy demand?
+- **Capital:** How much money is tied up, and how efficiently does stock move?
+- **Surplus:** What is excessive, slow-moving, or aging?
+- **Shortage:** What is missing now or likely to be missing soon?
+- **Capacity:** How much usable warehouse space remains?
+
+Definitions such as “current,” “future,” “excess,” and “at risk” must be governed centrally. The [metric contracts](docs/metric-contracts.md) document their grain, eligibility rules, thresholds, owner, and expected action.
+
+## Design choices
+
+- Keep current and future inventory facts separate so time meaning stays clear.
+- Show quantity and value together; either one alone can mislead.
+- Map every risk class to an owner and a practical playbook.
+- Use AI-generated explanations only when freshness, privacy, confidence, and reconciliation checks pass.
+- Keep overview pages simple and move detailed tables into focused pages.
+- Block a release when totals do not reconcile or the report points to the wrong environment.
+
+See [architecture decisions](docs/architecture-decisions.md) for alternatives and revisit conditions.
+
+## What is in the repository
+
+| Path | What you will find |
+|---|---|
+| [`docs/report-design.md`](docs/report-design.md) | Page hierarchy, decision flow, and visual rules |
+| [`docs/metric-contracts.md`](docs/metric-contracts.md) | Metric definitions, thresholds, owners, and playbooks |
+| [`docs/measure-governance.md`](docs/measure-governance.md) | Lifecycle and organization of the measure library |
+| [`docs/architecture-decisions.md`](docs/architecture-decisions.md) | Decisions, alternatives, and trade-offs |
+| [`docs/operating-model.md`](docs/operating-model.md) | Reliability, security, performance, and ownership |
+| [`docs/testing.md`](docs/testing.md) | Tests required before release |
+| [`report/page-inventory.yaml`](report/page-inventory.yaml) | Privacy-safe report structure |
+| [`samples/dax-patterns.md`](samples/dax-patterns.md) | Generic DAX examples using fabricated objects |
+| [`scripts/validate_portfolio.py`](scripts/validate_portfolio.py) | Automated structure, link, syntax, and privacy checks |
+
+## Evidence and limits
+
+The seven-page structure and aggregate metadata counts were observed through read-only metadata on **2026-08-01**. Metric examples, thresholds, service targets, and operating controls are proposed patterns; they are not claims of production performance, savings, or business impact.
+
+## Related projects
 
 - [Shared Control Tower Semantic Model](https://github.com/vothai17072002/supply-chain-control-tower-semantic-model)
 - [Forecast Accuracy Analytics](https://github.com/vothai17072002/forecast-accuracy-analytics)
 - [Fabric Medallion Supply Chain Platform](https://github.com/vothai17072002/fabric-medallion-supply-chain-platform)
-
-## Safe portfolio scope
-
-Architecture and aggregate artifact inventory were observed through read-only Fabric metadata. Names and formulas are generalized; no operational identifier, business record, or proprietary report artifact is published. The repository demonstrates architectural reasoning and does not assert individual authorship, team size, adoption, savings, or KPI improvement without approved evidence.
